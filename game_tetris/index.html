@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄罗斯方块</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+  
+  <!-- 游戏界面 -->
+  <div id="gameBox">
+    <div id="game_relevant">
+      <span id="score">分数：0</span>
+      <span id="f">帧编号：0</span>
+    </div>
+    <!-- 游戏 -->
+    <div id="game_subject"></div>
+  </div>
+
+  <!-- 开始界面 -->
+  <div id="start">
+    <img src="./img/logo.png" alt="俄罗斯方块" srcset="">
+    <div class="divBtn" id="startBtn">开始游戏</div>
+    <div class="divBtn" id="clearBtn">关闭游戏</div>
+  </div>
+
+  <!-- 提示信息 -->
+  <div id="tips">
+    <div id="tips_shade">
+      <div id="tip_content">
+        <!-- 游戏结束！您当前得分为：<span id="tips_score">10000</span> -->
+        <!-- 默认提示信息 -->
+      </div>
+      <div id="tip_btn">
+        <button type="primary">重新开始</button>
+        <button type="default">退出游戏</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 操作作说明 -->
+  <div id="PS">
+    <h4>操作说明</h4>
+    <ul>
+      <li>
+        <b><span class="span">↑</span></b> <label>/</label> <b><span class="span">W</span> :</b>旋转方向
+      </li>
+      <li>
+        <b><span class="span">→</span></b> <label>/</label> <b><span class="span">D</span> :</b>向右移动
+      </li>
+      <li>
+        <b><span class="span">↓</span></b> <label>/</label> <b><span class="span">S</span> :</b>向下移动
+      </li>
+      <li>
+        <b><span class="span">←</span></b> <label>/</label> <b><span class="span">A</span> :</b>向左移动
+      </li>
+      <li>
+        <b><span class="span Space">——</span> :</b>空格键，一键到底
+      </li>
+      <li>
+        <b><span class="span esc">ESC</span> :</b>退出游戏
+      </li>
+    </ul>
+  </div>
+
+</body>
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/BLOCK_JSON.js"></script>
+<script src="./js/game.js"></script>
+<script src="./js/block.js"></script>
+<script src="./js/map.js"></script>
+<script>
+  var game;
+  $("#startBtn").on('click',function(){
+
+    $("#start").css({"display":"none"})
+    $("#game_relevant").css({"display":"block"})
+    game = new Game();
+    
+  })
+
+  $("#clearBtn").on('click',function(){
+    window.close();
+  })
+
+  var music = ["用力活着","散花","扑空","一生所爱","梦中的婚礼","雨的印记","演员","赤伶","колыбельная"];
+  var getMusic = music[parseInt(Math.random() * music.length)];
+
+  // 音频
+  if (navigator.appName == "Microsoft Internet Explorer") {
+    document.write(`<bgsound src="./music/${getMusic}.mp3" loop="infinite">`);
+  } else {
+    document.write(`<embed src="./music/${getMusic}.mp3" hidden="true" autostart="true" loop="true">`);
+  }
+</script>
+</html>
